@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="site-section">
+    <div class="container">
+      <div class="row mb-5">
+        {% for item in items %}
+          <a href='{{ item.get_absolute_url }}'>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href='{{ item.get_absolute_url }}'>
+                    <img src='{{ item.image.url }}'
+                         alt='{{ item.title }}'
+                         class="item-card-img"/>
+                  </a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href='{{ item.get_absolute_url }}'>{{ item.title }}</a>
+                  </h3>
+                  <div class="row justify-content-center">
+                    <span class="text-primary font-weight-bold">{{ item.price }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

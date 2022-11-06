@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="site-section">
+    <div class="container">
+      <div class="col-md-12">
+        <h2 class="h3 mb-5 text-black text-center">Order Summary</h2>
+      </div>
+      <div class="row mb-5">
+        <form class="col-md-12" method="post">
+          <div class="site-blocks-table">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Image</th>
+                  <th class="product-name">Product</th>
+                  <th class="product-price">Price</th>
+                  <th class="product-quantity">Quantity</th>
+                  <th class="product-total">Total</th>
+                  <th class="product-remove">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order_item in cart.items.all %}
+                  <tr>
+                    <td class="product-thumbnail">
+                      <img src="{{ order_item.item.image.url }}" alt="Image" class="img-fluid">
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{ order_item.item.title }}</h2>
+                    </td>
+                    <td>
+                      {% if order_item.item.discount_price %}
+                        {{ order_item.item.discount_price }}
+                      {% else %}
+                        {{ order_item.item.price }}
+                      {% endif %}
+                    </td>
+                    <td>
+                      <div class="input-group mb-3" style="max-width: 120px;">
+                        <div class="input-group-prepend">
+                          <a href="{% url 'events:remove-single-item-from-cart' order_item.item.slug %}"
+                             class="buy-now btn btn-block btn-outline-primary">-</a>
+                        </div>
+                        <input type="text"
+                               class="form-control text-center"
+                               value="{{ order_item.quantity }}"
+                               placeholder="0"
+                               disabled/>
+                        <div class="input-group-append">
+                          <a href="{% url 'events:add-to-cart' order_item.item.slug %}"
+                             class="buy-now btn btn-block btn-outline-primary">+</a>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      {% if order_item.item.discount_price %}
+                        {{ order_item.get_total_discount_item_price }}
+                      {% else %}
+                        {{ order_item.get_total_item_price }}
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{% url 'events:remove-from-cart' order_item.item.slug %}"
+                         class="btn btn-primary btn-sm">X</a>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan=6>Your cart is empty</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row mb-5">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
+            </div>
+            <div class="col-md-6">
+              <a href="{% url 'events:events' %}"
+                 class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pl-5">
+          <div class="row justify-content-end">
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-md-12 text-right border-bottom mb-5">
+                  <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                </div>
+              </div>
+              <div class="row mb-5">
+                <div class="col-md-6">
+                  <span class="text-black">Total</span>
+                </div>
+                <div class="col-md-6 text-right">
+                  <strong class="text-black">{{ cart.get_cart_total }}</strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="{% url 'events:checkout' %}"
+                     class="btn btn-primary btn-lg py-3 btn-block">Proceed To Checkout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

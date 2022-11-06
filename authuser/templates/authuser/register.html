@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content %}
+  <div class="site-section">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+          <h2 class="h3 mb-3 text-black text-center">Register</h2>
+        </div>
+        <div class="col-md-8">
+          <form method="post" action="{% url 'authuser:register' %}">
+            {% csrf_token %}
+            <div class="p-3 p-lg-5 border">
+              {{ form.non_field_errors }}
+              {% for field in form %}
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_email" class="text-black">{{ field.label_tag }}</label>
+                    {% if form.is_bound %}
+                      {% if field.errors %}
+                        {% render_field field class="form-control is-invalid" %}
+                        {% for error in field.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                      {% else %}
+                        {% if field.name == "password1" %}
+                          {% include "authuser/snippets/password_input.html" %}
+                        {% elif field.name == "password2" %}
+                          {% include "authuser/snippets/confirm_password_input.html" %}
+                        {% else %}
+                          {% render_field field class="form-control is-valid" %}
+                        {% endif %}
+                      {% endif %}
+                    {% else %}
+                      {% if field.name == "password1" %}
+                        {% include "authuser/snippets/password_input.html" %}
+                      {% elif field.name == "password2" %}
+                        {% include "authuser/snippets/confirm_password_input.html" %}
+                      {% else %}
+                        {% render_field field class="form-control" %}
+                      {% endif %}
+                    {% endif %}
+                    {% if field.help_text %}<small class="form-text text-muted">{{ field.help_text }}</small>{% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+              <div class="form-group row">
+                <div class="col-lg-12 mt-5">
+                  <input type="submit"
+                         class="btn btn-primary btn-lg btn-block"
+                         value="Register"/>
+                  <p class="col-lg-12 mt-3 text-center">
+                    Already have an account?
+                    <a href="{% url 'authuser:login' %}"
+                       target="_blank"
+                       class="text-primary">Log in</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

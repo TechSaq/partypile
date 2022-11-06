@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="site-section border-bottom" data-aos="fade">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <div class="block-16">
+            <figure>
+              <img src="{% static 'images/party_1.jpg' %}"
+                   alt="Image placeholder"
+                   class="img-fluid rounded"
+                   width="auto"
+                   height="auto"/>
+              <a href="https://player.vimeo.com/video/361991712?h=db7e9e012"
+                 class="play-button popup-vimeo"><span class="icon icon-play"></span></a>
+            </figure>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <div class="site-section-heading pt-3 mb-4">
+            <h2 class="text-black">How We Started</h2>
+          </div>
+          <p>
+            Website has easy to use interface so that user can navigate the website easily and shop whatever they want. Website provides service categories such as bachelor party, birthday party, children party, fetus detection party, graduation party, farewell party, wedding anniversary party and other parties.
+          </p>
+          <p>
+            According to the scenario user can select the type of party and then accessories and supplies will be shown to user related to this party which user can select from according to the need and then simply place the order in few clicks.
+            If in case, there is something which user wants to purchase other than the supplies not present in category service, user can go to main accessories and supplies listing and select from there and can place the order.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-section border-bottom" data-aos="fade">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 site-section-heading text-center pt-4">
+          <h2>The Team</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="block-38 text-center">
+            <div class="block-38-img">
+              <div class="block-38-header">
+                <img src="{% static 'images/person_1.jpg' %}"
+                     alt="Image placeholder"
+                     class="mb-4">
+                <h3 class="block-38-heading h4">Elizabeth Graham</h3>
+                <p class="block-38-subheading">CEO/Co-Founder</p>
+              </div>
+              <div class="block-38-body">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="block-38 text-center">
+            <div class="block-38-img">
+              <div class="block-38-header">
+                <img src="{% static 'images/person_2.jpg' %}"
+                     alt="Image placeholder"
+                     class="mb-4">
+                <h3 class="block-38-heading h4">Jennifer Greive</h3>
+                <p class="block-38-subheading">Co-Founder</p>
+              </div>
+              <div class="block-38-body">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="block-38 text-center">
+            <div class="block-38-img">
+              <div class="block-38-header">
+                <img src="{% static 'images/person_3.jpg' %}"
+                     alt="Image placeholder"
+                     class="mb-4">
+                <h3 class="block-38-heading h4">Patrick Marx</h3>
+                <p class="block-38-subheading">Marketing</p>
+              </div>
+              <div class="block-38-body">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="block-38 text-center">
+            <div class="block-38-img">
+              <div class="block-38-header">
+                <img src="{% static 'images/person_4.jpg' %}"
+                     alt="Image placeholder"
+                     class="mb-4">
+                <h3 class="block-38-heading h4">Mike Coolbert</h3>
+                <p class="block-38-subheading">Sales Manager</p>
+              </div>
+              <div class="block-38-body">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "core/snippets/_features.html" %}
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% load static %}
+{% load cart_template_tags %}
+<header class="site-navbar" role="banner">
+  <div class="site-navbar-top">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="order-2 order-md-1 site-search-icon text-left">
+          <div class="site-logo">
+            <a href="{% url 'events:events' %}"  class="js-logo-clone">
+              <img src="{% static 'images/logo.png' %}" width="200" height="auto" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="mb-3 mb-md-0 order-1 order-md-2 text-center">
+          <nav class="site-navigation text-right text-md-center" role="navigation">
+            <div class="container">
+              <ul class="site-menu js-clone-nav d-none d-md-block">
+                <li class="active">
+                  <a href="{% url 'events:events' %}">Home</a>
+                </li>
+                <li>
+                  <a href="{% url 'events:about' %}">About</a>
+                </li>
+                <li>
+                  <a href="{% url 'events:shop' %}">Shop</a>
+                </li>
+                <li>
+                  <a href="{% url 'events:contact' %}">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="order-3 order-md-3 text-right">
+          <div class="site-top-icons site-navigation text-right text-md-center">
+            <ul class="site-menu js-clone-nav d-none d-md-block">
+              {% if user.is_authenticated %}
+                <li class="has-children">
+                  <a>Hi, {{ user.username }}</a>
+                  <ul class="dropdown">
+                    <li>
+                      <a href="{% url 'authuser:logout' %}">Log out</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="{% url 'events:order-summary' %}" class="site-cart">
+                    <span class="icon icon-shopping_cart"></span>
+                    <span class="count">{{ request.user|cart_item_count }}</span>
+                  </a>
+                </li>
+                <li class="d-inline-block d-md-none ml-md-0">
+                  <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
+                </li>
+              {% else %}
+                <a class="btn btn-success"
+                   style="color: #fff"
+                   href="{% url 'authuser:login' %}"><span>Login</span></a>
+                <a class="btn btn-secondary" href="{% url 'authuser:register' %}"><span>Register</span></a>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

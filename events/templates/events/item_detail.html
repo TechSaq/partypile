@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="site-section">
+    <div class="container mb-5">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{{ item.image.url }}"
+               alt="{{ item.title }}"
+               class="img-fluid"
+               width="auto"
+               height="auto"/>
+        </div>
+        <div class="col-md-6">
+          <h2 class="text-black">{{ item.title }}</h2>
+          <p>{{ item.description }}</p>
+          <p>
+            <strong class="text-primary h4">{{ item.price }}</strong>
+          </p>
+          <div class="mb-5">
+            <div class="input-group mb-3" style="max-width: 120px;">
+              <div class="input-group-prepend">
+                <a href="{% url 'events:remove-single-item-from-cart' item.slug %}"
+                   class="buy-now btn btn-block btn-outline-primary">-</a>
+              </div>
+              <input type="text"
+                     class="form-control text-center"
+                     value="1"
+                     placeholder=""
+                     disabled/>
+              <div class="input-group-append">
+                <a href="{{ item.get_add_to_cart_url }}"
+                   class="buy-now btn btn-block btn-outline-primary">+</a>
+              </div>
+            </div>
+          </div>
+          <p>
+            <a href="{{ item.get_add_to_cart_url }}"
+               class="buy-now btn btn-sm btn-primary">Add To Cart</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    {% include "events/featured_items_list.html" %}
+  </div>
+{% endblock content %}
